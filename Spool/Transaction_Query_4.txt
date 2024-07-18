@@ -1,0 +1,21 @@
+SQL> SELECT
+  2     *
+  3  FROM
+  4     product
+  5  WHERE product_id IN (
+  6      SELECT *
+  7      FROM (
+  8          SELECT product_id
+  9          FROM order_quantity_details
+ 10          GROUP BY product_id
+ 11          ORDER BY SUM(order_quantity) DESC
+ 12      )
+ 13      WHERE ROWNUM <= 3);
+
+PRODUCT_ID PRODUCT_NAME              DESCRIPTION                         PRODUCT_CATEGOR      PRICE STOCK_LEVEL  VENDOR_ID   
+---------- ------------------------- ----------------------------------- --------------- ---------- ----------- ----------   
+       116 Airpods Pro               active noise cancellation           Headphone            67000          60          1   
+       104 redmi note 11             6.43-inch AMOLED display            Phone                30000          23          4   
+       101 iphone 15                 6.1-inch OLED display               Phone               140000          31          1   
+
+SQL> SPOOL OFF

@@ -1,0 +1,77 @@
+SQL> SELECT
+  2      *
+  3  FROM
+  4      customer
+  5  LEFT JOIN
+  6      orders ON customer.Customer_Id = orders.Customer_Id;
+
+CUSTOMER_ID CUSTOMER_NAME             CUSTO ADDRESS              PHONE_NUMBER   ORDER_ID ORDER_DAT TOTAL_ORDER_AMOUNT        
+----------- ------------------------- ----- -------------------- ------------ ---------- --------- ------------------        
+PAYMENT_ID CUSTOMER_ID                                                                                                       
+---------- -----------                                                                                                       
+        301 Hridaya Giri              R     Kalanki                9812314251        901 05-FEB-23             538000        
+      9921         301                                                                                                       
+                                                                                                                             
+        309 Ronak Shrestha            R     Lalitpur               9811992345        902 08-MAY-22             740000        
+      9922         309                                                                                                       
+                                                                                                                             
+        307 Rodrik Shahi              S     Toronto                9877879707        903 14-FEB-23             342000        
+      9923         307                                                                                                       
+                                                                                                                             
+
+CUSTOMER_ID CUSTOMER_NAME             CUSTO ADDRESS              PHONE_NUMBER   ORDER_ID ORDER_DAT TOTAL_ORDER_AMOUNT        
+----------- ------------------------- ----- -------------------- ------------ ---------- --------- ------------------        
+PAYMENT_ID CUSTOMER_ID                                                                                                       
+---------- -----------                                                                                                       
+        301 Hridaya Giri              R     Kalanki                9812314251        904 11-MAY-23             640000        
+      9921         301                                                                                                       
+                                                                                                                             
+        302 Sheikh MD Abid            S     Birgunj                9822324252        905 12-MAY-23             323000        
+      9924         302                                                                                                       
+                                                                                                                             
+        305 Pabisha Bhatta            R     Baneshwor              9855657585        906 01-JUN-23             368600        
+      9925         305                                                                                                       
+                                                                                                                             
+
+CUSTOMER_ID CUSTOMER_NAME             CUSTO ADDRESS              PHONE_NUMBER   ORDER_ID ORDER_DAT TOTAL_ORDER_AMOUNT        
+----------- ------------------------- ----- -------------------- ------------ ---------- --------- ------------------        
+PAYMENT_ID CUSTOMER_ID                                                                                                       
+---------- -----------                                                                                                       
+        303 Nelson Khatiwada          V     Bhaktapur              9833435363        907 25-MAY-23            1017000        
+      9926         303                                                                                                       
+                                                                                                                             
+        301 Hridaya Giri              R     Kalanki                9812314251        908 10-AUG-23             167000        
+      9921         301                                                                                                       
+                                                                                                                             
+        303 Nelson Khatiwada          V     Bhaktapur              9833435363        909 30-AUG-23            1273000        
+      9926         303                                                                                                       
+                                                                                                                             
+
+CUSTOMER_ID CUSTOMER_NAME             CUSTO ADDRESS              PHONE_NUMBER   ORDER_ID ORDER_DAT TOTAL_ORDER_AMOUNT        
+----------- ------------------------- ----- -------------------- ------------ ---------- --------- ------------------        
+PAYMENT_ID CUSTOMER_ID                                                                                                       
+---------- -----------                                                                                                       
+        304 Shreyan Rawal             V     New York               9844546474        910 08-AUG-23             860400        
+      9927         304                                                                                                       
+                                                                                                                             
+        302 Sheikh MD Abid            S     Birgunj                9822324252        911 12-DEC-23             266000        
+      9924         302                                                                                                       
+                                                                                                                             
+        306 Shristi Shrestha          R     Kamalpokhari           9866768696                                                
+                                                                                                                             
+                                                                                                                             
+
+CUSTOMER_ID CUSTOMER_NAME             CUSTO ADDRESS              PHONE_NUMBER   ORDER_ID ORDER_DAT TOTAL_ORDER_AMOUNT        
+----------- ------------------------- ----- -------------------- ------------ ---------- --------- ------------------        
+PAYMENT_ID CUSTOMER_ID                                                                                                       
+---------- -----------                                                                                                       
+        308 Swastik Aryal             R     Naxal                  9848980818                                                
+                                                                                                                             
+                                                                                                                             
+        310 Pramika Jha               S     Putalisadak            9874390651                                                
+                                                                                                                             
+                                                                                                                             
+
+14 rows selected.
+
+SQL> SPOOL OFF

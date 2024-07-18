@@ -1,0 +1,26 @@
+SQL> SELECT
+  2     p.product_name,
+  3     oq.order_quantity,
+  4     o.order_date,
+  5     o.total_order_amount
+  6  FROM
+  7     order_quantity_details oq
+  8  JOIN
+  9     orders o ON oq.order_id = o.order_id
+ 10  JOIN
+ 11     product p ON oq.product_id = p.product_id
+ 12  WHERE
+ 13      o.order_date BETWEEN TO_DATE('2023-05-01', 'YYYY-MM-DD') AND TO_DATE('2023-05-28', 'YYYY-MM-DD');
+
+PRODUCT_NAME              ORDER_QUANTITY ORDER_DAT TOTAL_ORDER_AMOUNT                                                        
+------------------------- -------------- --------- ------------------                                                        
+oneplus 11                             4 11-MAY-23             640000                                                        
+redmi note 11                         11 25-MAY-23            1017000                                                        
+dell inspiron                          2 12-MAY-23             323000                                                        
+Sony headphones                        1 12-MAY-23             323000                                                        
+razer gaming mouse                     5 12-MAY-23             323000                                                        
+Sony 4k Tv                             5 25-MAY-23            1017000                                                        
+
+6 rows selected.
+
+SQL> SPOOL OFF

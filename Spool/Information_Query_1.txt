@@ -1,0 +1,14 @@
+SQL> SELECT
+  2     *
+  3  FROM
+  4     customer
+  5  WHERE
+  6     customer_category = 'S';
+
+CUSTOMER_ID CUSTOMER_NAME             CUSTO ADDRESS              PHONE_NUMBER                                                
+----------- ------------------------- ----- -------------------- ------------                                                
+        302 Sheikh MD Abid            S     Birgunj                9822324252                                                
+        307 Rodrik Shahi              S     Toronto                9877879707                                                
+        310 Pramika Jha               S     Putalisadak            9874390651                                                
+
+SQL> SPOOL OFF

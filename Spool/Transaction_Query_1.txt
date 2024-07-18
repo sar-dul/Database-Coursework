@@ -1,0 +1,22 @@
+SQL> SELECT
+  2      TO_CHAR(Order_Date, 'YYYY-MM') AS Month,
+  3      SUM(Total_Order_Amount) AS Total_Revenue
+  4  FROM
+  5      orders
+  6  GROUP BY
+  7      TO_CHAR(Order_Date, 'YYYY-MM')
+  8  ORDER BY
+  9      TO_CHAR(Order_Date, 'YYYY-MM');
+
+MONTH   TOTAL_REVENUE                                                                                                        
+------- -------------                                                                                                        
+2022-05        740000                                                                                                        
+2023-02        880000                                                                                                        
+2023-05       1980000                                                                                                        
+2023-06        368600                                                                                                        
+2023-08       2300400                                                                                                        
+2023-12        266000                                                                                                        
+
+6 rows selected.
+
+SQL> SPOOL OFF

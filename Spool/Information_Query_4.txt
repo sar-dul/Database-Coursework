@@ -1,0 +1,14 @@
+SQL> SELECT
+  2      *
+  3  FROM
+  4      product
+  5  WHERE
+  6      product_name LIKE '_a%'
+  7      AND stock_level > 50;
+
+PRODUCT_ID PRODUCT_NAME              DESCRIPTION                         PRODUCT_CATEGOR      PRICE STOCK_LEVEL  VENDOR_ID   
+---------- ------------------------- ----------------------------------- --------------- ---------- ----------- ----------   
+       102 samsung s23 ultra         6.8-inch OLED display               Phone               215000          51          2   
+       114 razer gaming mouse        high precision, speed               Accessories          15000         130          8   
+
+SQL> SPOOL OFF

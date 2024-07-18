@@ -1,0 +1,19 @@
+SQL> SELECT
+  2      customer_name,
+  3      customer_category,
+  4      address,
+  5      phone_number,
+  6      order_date,
+  7      total_order_amount
+  8  FROM
+  9      customer c
+ 10  JOIN
+ 11      orders o ON c.Customer_Id = o.Customer_Id
+ 12  WHERE
+ 13      o.Order_Date = (SELECT MAX(Order_Date) FROM Orders);
+
+CUSTOMER_NAME             CUSTO ADDRESS              PHONE_NUMBER ORDER_DAT TOTAL_ORDER_AMOUNT                               
+------------------------- ----- -------------------- ------------ --------- ------------------                               
+Sheikh MD Abid            S     Birgunj                9822324252 12-DEC-23             266000                               
+
+SQL> SPOOL OFF

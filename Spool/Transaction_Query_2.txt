@@ -1,0 +1,19 @@
+SQL> SELECT
+  2     order_id,
+  3     order_date,
+  4     total_order_amount
+  5  FROM
+  6     orders
+  7  WHERE
+  8     total_order_amount >=
+  9     (SELECT AVG(total_order_amount) FROM orders);
+
+  ORDER_ID ORDER_DAT TOTAL_ORDER_AMOUNT                                                                                      
+---------- --------- ------------------                                                                                      
+       902 08-MAY-22             740000                                                                                      
+       904 11-MAY-23             640000                                                                                      
+       907 25-MAY-23            1017000                                                                                      
+       909 30-AUG-23            1273000                                                                                      
+       910 08-AUG-23             860400                                                                                      
+
+SQL> SPOOL OFF

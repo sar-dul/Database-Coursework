@@ -1,0 +1,17 @@
+SQL> SELECT
+  2     *
+  3  FROM
+  4     vendor
+  5  WHERE vendor_id IN (
+  6     SELECT vendor_id
+  7     FROM product
+  8     GROUP BY vendor_id
+  9     HAVING COUNT(vendor_id) > 3
+ 10  );
+
+ VENDOR_ID VENDOR_NAME               VENDOR_ADDRESS                                                                          
+---------- ------------------------- --------------------                                                                    
+         1 Apple                     California, US                                                                          
+         7 Sony                      Tokyo                                                                                   
+
+SQL> SPOOL OFF

@@ -1,0 +1,18 @@
+SQL> SELECT customer_id, customer_name, total_spent
+  2  FROM (
+  3      SELECT c.customer_id,
+  4             c.customer_name,
+  5             SUM(o.total_order_amount) AS total_spent
+  6      FROM customer c
+  7      JOIN orders o ON c.Customer_Id = o.Customer_Id
+  8      WHERE TO_CHAR(order_date, 'MM') = '08'
+  9      GROUP BY c.customer_id, c.customer_name
+ 10      ORDER BY SUM(o.total_order_amount) DESC
+ 11  )
+ 12  WHERE ROWNUM = 1;
+
+CUSTOMER_ID CUSTOMER_NAME             TOTAL_SPENT                               
+----------- ------------------------- -----------                               
+        303 Nelson Khatiwada              1273000                               
+
+SQL> SPOOL OFF
