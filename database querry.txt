@@ -1,0 +1,294 @@
+
+CREATE TABLE Vendor (
+    vendor_id NUMBER(10),
+    vendor_name VARCHAR(25) NOT NULL,
+    vendor_address VARCHAR(20) NOT NULL,
+    PRIMARY KEY (vendor_id)
+);
+
+CREATE TABLE Customer_Category_Details (
+    customer_category VARCHAR(5),
+    discount NUMBER(5,2) NOT NULL,
+    PRIMARY KEY (customer_category)
+);
+
+CREATE TABLE Payment_details (
+    payment_id NUMBER(10),
+    payment_type VARCHAR(10) NOT NULL,
+    payment_option_details VARCHAR(30) NOT NULL,
+    PRIMARY KEY (payment_id)
+);
+
+CREATE TABLE Product (
+    product_id NUMBER(10),
+    product_name VARCHAR(25) NOT NULL,
+    description VARCHAR(35) NOT NULL,
+    product_category VARCHAR(15),
+    price NUMBER(15),
+    stock_level NUMBER(10) NOT NULL,
+    vendor_id NUMBER(10) NOT NULL,
+    PRIMARY KEY (product_id),
+    FOREIGN KEY (vendor_id) REFERENCES vendor(vendor_id)
+);
+
+CREATE TABLE Customer (
+    customer_id NUMBER(10),
+    customer_name VARCHAR(25) NOT NULL,
+    customer_category VARCHAR(5) NOT NULL,
+    address VARCHAR(20),
+    phone_number NUMBER(15),
+    PRIMARY KEY (customer_id),
+    FOREIGN KEY (customer_category) REFERENCES customer_category_details(customer_category)
+);
+
+CREATE TABLE Orders (
+    order_id NUMBER(10),
+    order_date DATE NOT NULL,
+    total_order_amount NUMBER(15) NOT NULL,
+    payment_id NUMBER(10) NOT NULL,
+    customer_id NUMBER(10) NOT NULL,
+    PRIMARY KEY (order_id),
+    FOREIGN KEY (payment_id) REFERENCES payment_details(payment_id),
+    FOREIGN KEY (customer_id) REFERENCES customer(customer_id)
+);
+
+CREATE TABLE Order_quantity_details (
+    product_id NUMBER(10) NOT NULL,
+    order_id NUMBER(10) NOT NULL,
+    order_quantity NUMBER(10) NOT NULL,
+    FOREIGN KEY (product_id) REFERENCES product(product_id),
+    FOREIGN KEY (order_id) REFERENCES orders(order_id)
+);
+
+=============================================================================================================================
+
+INSERT ALL
+    INTO vendor VALUES (1, 'Apple', 'California, US')
+    INTO vendor VALUES (2, 'Samsung', 'South Korea')
+    INTO vendor VALUES (3, 'Oneplus', 'China')
+    INTO vendor VALUES (4, 'Mi', 'Beijing, China')
+    INTO vendor VALUES (5, 'Dell', 'Texas, US')
+    INTO vendor VALUES (6, 'Asus', 'Taiwan')
+    INTO vendor VALUES (7, 'Sony', 'Tokyo')
+    INTO vendor VALUES (8, 'Razer', 'Singapore')
+    INTO vendor VALUES (9, 'Stream', 'Washington, US')
+SELECT * FROM dual;
+
+INSERT ALL
+    INTO customer_category_details VALUES ('R', 0)
+    INTO customer_category_details VALUES ('S', 5)
+    INTO customer_category_details VALUES ('V', 10)
+SELECT * FROM dual;
+
+INSERT ALL
+    INTO PAYMENT_DETAILS VALUES (9921, 'E-wallet', '9812314251')
+    INTO PAYMENT_DETAILS VALUES (9922, 'Cash', 'Lalitpur')
+    INTO PAYMENT_DETAILS VALUES (9923, 'E-wallet', '9877879707')
+    INTO PAYMENT_DETAILS VALUES (9924, 'Card', '1276 1111 3456 2222')
+    INTO PAYMENT_DETAILS VALUES (9925, 'Cash', 'Baneshwor')
+    INTO PAYMENT_DETAILS VALUES (9926, 'E-wallet', '9833435363')
+    INTO PAYMENT_DETAILS VALUES (9927, 'Cash', 'New York')
+SELECT * FROM dual;
+
+INSERT ALL
+    INTO PRODUCT VALUES (101, 'iphone 15', '6.1-inch OLED display', 'Phone', 140000, 31, 1)
+    INTO PRODUCT VALUES (102, 'samsung s23 ultra', '6.8-inch OLED display', 'Phone', 215000, 51, 2)
+    INTO PRODUCT VALUES (103, 'oneplus 11', '6.7-inch OLED display', 'Phone', 160000, 81, 3)
+    INTO PRODUCT VALUES (104, 'redmi note 11', '6.43-inch AMOLED display', 'Phone', 30000, 23, 4)
+    INTO PRODUCT VALUES (105, 'macbook pro m2', '14-inch Retina display', 'Laptop', 258000, 10, 1)
+    INTO PRODUCT VALUES (106, 'dell xps 15', '15.6-inch OLED display', 'Laptop', 235000, 15, 5)
+    INTO PRODUCT VALUES (107, 'dell inspiron', '13-17-inch models', 'Laptop', 110000, 20, 5)
+    INTO PRODUCT VALUES (108, 'asus zenbook 14', '14-inch 2.8K OLED display', 'Laptop', 120000, 13, 6)
+    INTO PRODUCT VALUES (109, 'apple watch se', 'fall detection, heart rate monitor', 'Smartwatch', 80000, 55, 1)
+    INTO PRODUCT VALUES (110, 'Sony headphones', 'noise canceling, extra bass', 'Headphone', 45000, 105, 7)
+    INTO PRODUCT VALUES (111, 'Sony Zv camera', '20.1-megapixel sensor', 'Camera', 126000, 7, 7)
+    INTO PRODUCT VALUES (112, 'PlayStation 5', 'supports 4K resolution', 'Gaming', 120000, 38, 7)
+    INTO PRODUCT VALUES (113, 'keychron keyboard', '75% layout, RGB', 'Accessories', 27000, 60, 8)
+    INTO PRODUCT VALUES (114, 'razer gaming mouse', 'high precision, speed', 'Accessories', 15000, 130, 8)
+    INTO PRODUCT VALUES (115, 'Go X1 webcam', 'captures 1080p video at 30fps', 'Accessories', 6500, 100, 9)
+    INTO PRODUCT VALUES (116, 'Airpods Pro', 'active noise cancellation', 'Headphone', 67000, 60, 1)
+    INTO PRODUCT VALUES (117, 'Sony 4k Tv', 'displays 4K resolution, HDR', 'TV', 160000, 5, 7)
+    INTO PRODUCT VALUES (118, 'SRS Bluetooth Speaker', 'powerful sound', 'Audio', 33000, 42, 7)
+SELECT * FROM dual;
+
+INSERT ALL
+    INTO CUSTOMER VALUES (301, 'Hridaya Giri', 'R', 'Kalanki', '9812314251')
+    INTO CUSTOMER VALUES (302, 'Sheikh MD Abid', 'S', 'Birgunj', '9822324252')
+    INTO CUSTOMER VALUES (303, 'Nelson Khatiwada', 'V', 'Bhaktapur', '9833435363')
+    INTO CUSTOMER VALUES (304, 'Shreyan Rawal', 'V', 'New York', '9844546474')
+    INTO CUSTOMER VALUES (305, 'Pabisha Bhatta', 'R', 'Baneshwor', '9855657585')
+    INTO CUSTOMER VALUES (306, 'Shristi Shrestha', 'R', 'Kamalpokhari', '9866768696')
+    INTO CUSTOMER VALUES (307, 'Rodrik Shahi', 'S', 'Toronto', '9877879707')
+    INTO CUSTOMER VALUES (308, 'Swastik Aryal', 'R', 'Naxal', '9848980818')
+    INTO CUSTOMER VALUES (309, 'Ronak Shrestha', 'R', 'Lalitpur', '9811992345')
+    INTO CUSTOMER VALUES (310, 'Pramika Jha', 'S', 'Putalisadak', '9874390651')
+SELECT * FROM dual;
+
+
+INSERT ALL
+    INTO ORDERS VALUES (901, TO_DATE('05-02-2023', 'DD-MM-YYYY'), 538000, 9921, 301)
+    INTO ORDERS VALUES (902, TO_DATE('08-05-2022', 'DD-MM-YYYY'), 740000, 9922, 309)
+    INTO ORDERS VALUES (903, TO_DATE('14-02-2023', 'DD-MM-YYYY'), 342000, 9923, 307)
+    INTO ORDERS VALUES (904, TO_DATE('11-05-2023', 'DD-MM-YYYY'), 640000, 9921, 301)
+    INTO ORDERS VALUES (905, TO_DATE('12-05-2023', 'DD-MM-YYYY'), 323000, 9924, 302)
+    INTO ORDERS VALUES (906, TO_DATE('01-06-2023', 'DD-MM-YYYY'), 368600, 9925, 305)
+    INTO ORDERS VALUES (907, TO_DATE('25-05-2023', 'DD-MM-YYYY'), 1017000, 9926, 303)
+    INTO ORDERS VALUES (908, TO_DATE('10-08-2023', 'DD-MM-YYYY'), 167000, 9921, 301)
+    INTO ORDERS VALUES (909, TO_DATE('30-08-2023', 'DD-MM-YYYY'), 1273000, 9926, 303)
+    INTO ORDERS VALUES (910, TO_DATE('08-08-2023', 'DD-MM-YYYY'), 860400, 9927, 304)
+    INTO ORDERS VALUES (911, TO_DATE('12-12-2023', 'DD-MM-YYYY'), 266000, 9924, 302)
+SELECT * FROM dual;
+
+INSERT ALL
+    INTO ORDER_QUANTITY_DETAILS VALUES (101, 901, 2)
+    INTO ORDER_QUANTITY_DETAILS VALUES (105, 901, 1)
+    INTO ORDER_QUANTITY_DETAILS VALUES (102, 902, 1)
+    INTO ORDER_QUANTITY_DETAILS VALUES (108, 902, 3)
+    INTO ORDER_QUANTITY_DETAILS VALUES (118, 902, 5)
+    INTO ORDER_QUANTITY_DETAILS VALUES (117, 903, 1)
+    INTO ORDER_QUANTITY_DETAILS VALUES (112, 903, 1)
+    INTO ORDER_QUANTITY_DETAILS VALUES (109, 903, 1)
+    INTO ORDER_QUANTITY_DETAILS VALUES (103, 904, 4)
+    INTO ORDER_QUANTITY_DETAILS VALUES (107, 905, 2)
+    INTO ORDER_QUANTITY_DETAILS VALUES (110, 905, 1)
+    INTO ORDER_QUANTITY_DETAILS VALUES (114, 905, 5)
+    INTO ORDER_QUANTITY_DETAILS VALUES (106, 906, 1)
+    INTO ORDER_QUANTITY_DETAILS VALUES (115, 906, 2)
+    INTO ORDER_QUANTITY_DETAILS VALUES (101, 906, 1)
+    INTO ORDER_QUANTITY_DETAILS VALUES (104, 907, 11)
+    INTO ORDER_QUANTITY_DETAILS VALUES (117, 907, 5)
+    INTO ORDER_QUANTITY_DETAILS VALUES (113, 908, 1)
+    INTO ORDER_QUANTITY_DETAILS VALUES (114, 908, 1)
+    INTO ORDER_QUANTITY_DETAILS VALUES (110, 908, 1)
+    INTO ORDER_QUANTITY_DETAILS VALUES (109, 908, 1)
+    INTO ORDER_QUANTITY_DETAILS VALUES (116, 909, 20)
+    INTO ORDER_QUANTITY_DETAILS VALUES (101, 910, 2)
+    INTO ORDER_QUANTITY_DETAILS VALUES (105, 910, 2)
+    INTO ORDER_QUANTITY_DETAILS VALUES (109, 910, 2)
+    INTO ORDER_QUANTITY_DETAILS VALUES (101, 911, 2)
+SELECT * FROM dual;
+
+
+================================================================================================================
+
+
+Queries
+
+1. SELECT 
+   * 
+FROM
+   customer 
+WHERE 
+   customer_category = 'S';
+--------------------------------------------------------------------------------------
+2. SELECT 
+   p.product_name, 
+   oq.order_quantity, 
+   o.order_date, 
+   o.total_order_amount 
+FROM 
+   order_quantity_details oq
+JOIN 
+   orders o ON oq.order_id = o.order_id
+JOIN 
+   product p ON oq.product_id = p.product_id
+WHERE
+    o.order_date BETWEEN TO_DATE('2023-05-01', 'YYYY-MM-DD') AND TO_DATE('2023-05-28', 'YYYY-MM-DD');
+
+----------------------------------------------------------------------------------------
+3. SELECT
+    *
+FROM
+    customer
+LEFT JOIN
+    orders ON customer.Customer_Id = orders.Customer_Id;
+----------------------------------------------------------------------------------------
+4. SELECT
+    *
+FROM
+    product
+WHERE
+    product_name LIKE '_a%'
+    AND stock_level > 50;
+-------------------------------------------------------------------------------------------
+5. SELECT
+    customer_name,
+    customer_category,
+    address,
+    phone_number,
+    order_date,
+    total_order_amount	
+FROM
+    customer c
+JOIN
+    orders o ON c.Customer_Id = o.Customer_Id
+WHERE
+    o.Order_Date = (SELECT MAX(Order_Date) FROM Orders);
+--------------------------------------------------------------------------------------------
+
+
+
+
+
+1.SELECT
+    TO_CHAR(Order_Date, 'YYYY-MM') AS Month,
+    SUM(Total_Order_Amount) AS Total_Revenue
+FROM
+    orders
+GROUP BY
+    TO_CHAR(Order_Date, 'YYYY-MM')
+ORDER BY
+    TO_CHAR(Order_Date, 'YYYY-MM');
+----------------------------------------------------------------------------------------------
+2. SELECT 
+   order_id,
+   order_date,
+   total_order_amount 
+FROM 
+   orders 
+WHERE 
+   total_order_amount >= 
+   (SELECT AVG(total_order_amount) FROM orders);
+-----------------------------------------------------------------------------------------------
+3. SELECT 
+   *
+FROM 
+   vendor
+WHERE vendor_id IN (
+   SELECT vendor_id
+   FROM product
+   GROUP BY vendor_id
+   HAVING COUNT(vendor_id) > 3
+);
+-----------------------------------------------------------------------------------------------
+4. SELECT 
+   *
+FROM 
+   product
+WHERE product_id IN (
+    SELECT *
+    FROM (
+        SELECT product_id
+        FROM order_quantity_details
+        GROUP BY product_id
+        ORDER BY SUM(order_quantity) DESC
+    )
+    WHERE ROWNUM <= 3);
+
+-----------------------------------------------------------------------------------------------
+5. SELECT customer_id, customer_name, total_spent
+FROM (
+    SELECT c.customer_id,
+           c.customer_name,
+           SUM(o.total_order_amount) AS total_spent
+    FROM customer c
+    JOIN orders o ON c.Customer_Id = o.Customer_Id
+    WHERE TO_CHAR(order_date, 'MM') = '08'
+    GROUP BY c.customer_id, c.customer_name
+    ORDER BY SUM(o.total_order_amount) DESC
+)
+WHERE ROWNUM = 1;
+
+-----------------------------------------------------------------------------------------------
+
+
